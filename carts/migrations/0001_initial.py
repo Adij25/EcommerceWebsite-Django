@@ -9,6 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('store', '0001_initial'),
     ]
 
     operations = [
@@ -27,6 +28,7 @@ class Migration(migrations.Migration):
                 ('quantity', models.IntegerField()),
                 ('is_active', models.BooleanField(default=True)),
                 ('cart', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='carts.cart')),
+                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='store.product')),
             ],
         ),
     ]

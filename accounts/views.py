@@ -152,10 +152,11 @@ def activate(request, uidb64, token):
 
 @login_required(login_url = 'login')
 def dashboard(request):
+    print("user id checking",request.user.id)
     orders = Order.objects.order_by('-created_at').filter(user_id=request.user.id, is_ordered=True)
     orders_count = orders.count()
 
-    userprofile = UserProfile.objects.get(user_id=request.user.id)
+    userprofile = UserProfile.objects.get(user_id=2)
     context = {
         'orders_count': orders_count,
         'userprofile': userprofile,
