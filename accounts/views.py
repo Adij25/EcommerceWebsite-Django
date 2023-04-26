@@ -48,8 +48,11 @@ def register(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': default_token_generator.make_token(user),
             })
+            print("email msg checking",message)
+            from_email = 'adityajagadale2002@gmail.com'
             to_email = email
-            send_email = EmailMessage(mail_subject, message, to=[to_email])
+            print("email sent to",to_email)
+            send_email = EmailMessage(mail_subject, message, from_email=from_email, to=[to_email])
             send_email.send()
             # messages.success(request, 'Thank you for registering with us. We have sent you a verification email to your email address [rathan.kumar@gmail.com]. Please verify it.')
             return redirect('/accounts/login/?command=verification&email='+email)
@@ -179,7 +182,9 @@ def forgotPassword(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': default_token_generator.make_token(user),
             })
+            print("email msg forgot password",message)
             to_email = email
+            print("email msg forgot password to reciepient",to_email)
             send_email = EmailMessage(mail_subject, message, to=[to_email])
             send_email.send()
 
